@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 
-// https://astro.build/config
 export default defineConfig({
+  site: "https://machere13.github.io",
+  base: "/Inspectra-Landing/",
   scopedStyleStrategy: "class",
 });

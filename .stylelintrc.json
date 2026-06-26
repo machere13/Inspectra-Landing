@@ -8,10 +8,14 @@
     }
   ],
   "rules": {
-    "selector-class-pattern": "^[a-z][a-zA-Z0-9]*$",
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]*(-[a-z0-9]+)*$",
     "custom-property-pattern": null,
     "no-descending-specificity": null,
     "declaration-block-no-redundant-longhand-properties": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      { "ignorePseudoClasses": ["global", "local"] }
+    ],
     "order/properties-order": [
       "position",
       "inset",
@@ -22,25 +26,38 @@
       "z-index",
       "display",
       "flex-direction",
+      "flex-wrap",
       "align-items",
       "justify-content",
       "gap",
       "grid-template-columns",
       "width",
       "height",
+      "aspect-ratio",
       "margin",
+      "margin-inline",
       "padding",
+      "padding-inline",
+      "padding-block",
+      "overflow",
+      "overflow-x",
       "font-family",
       "font-size",
       "font-weight",
       "line-height",
       "letter-spacing",
+      "text-transform",
+      "text-align",
       "color",
       "background",
       "border",
       "border-radius",
+      "box-shadow",
+      "opacity",
       "transform",
-      "transition"
+      "transform-origin",
+      "transition",
+      "animation"
     ]
   }
 }

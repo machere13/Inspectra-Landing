@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import tsParser from "@typescript-eslint/parser";
 import astro from "eslint-plugin-astro";
+import globals from "globals";
 
 export default [
   { ignores: ["dist/**", ".astro/**", "node_modules/**"] },
@@ -11,7 +12,7 @@ export default [
     languageOptions: {
       parser: tsParser,
       parserOptions: { sourceType: "module", ecmaVersion: "latest" },
-      globals: { window: "readonly", document: "readonly", requestAnimationFrame: "readonly" },
+      globals: { ...globals.browser },
     },
     rules: {
       "no-console": "warn",

@@ -6,12 +6,12 @@
   align-items: center;
   justify-content: center;
   gap: clamp(40px, 8vh, 88px);
+  overflow: hidden;
+  text-align: center;
+  background: var(--color-background);
   min-height: 100dvh;
   padding-top: 120px;
   padding-bottom: var(--spacing-x16);
-  background: var(--color-background);
-  overflow: hidden;
-  text-align: center;
 }
 
 .heroCanvas {

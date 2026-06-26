@@ -10,20 +10,22 @@
 }
 
 html {
+  scrollbar-width: none;
   text-size-adjust: 100%;
   scroll-behavior: auto;
+  -ms-overflow-style: none;
 }
 
 body {
-  min-height: 100dvh;
+  overflow-x: hidden;
   font-family: var(--font-family-geist-mono);
   font-size: var(--font-size-p2);
   line-height: var(--line-height-normal);
   color: var(--color-text-primary);
+  min-height: 100dvh;
   background-color: var(--color-background);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
-  overflow-x: hidden;
 }
 
 a {
@@ -54,11 +56,6 @@ svg {
   color: var(--color-background);
   background-color: var(--color-signal);
   text-shadow: none;
-}
-
-html {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
 ::-webkit-scrollbar {
@@ -113,8 +110,8 @@ html.lenis body {
   font-family: var(--font-family-geist-mono);
   font-size: var(--font-size-p3);
   line-height: var(--line-height-normal);
-  text-transform: uppercase;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .textCaption {
@@ -235,8 +232,8 @@ html.lenis body {
   position: relative;
   width: 2px;
   height: 140px;
-  background: var(--color-border-tertiary);
   overflow: hidden;
+  background: var(--color-border-tertiary);
 }
 
 .scrollProgressBar {

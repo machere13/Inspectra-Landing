@@ -1,11 +1,4 @@
 #!/usr/bin/env node
-// Типограф для лендинга: ставит неразрывный пробел после коротких предлогов/союзов
-// и перед тире. Обрабатывает русский текст в src/data/*.ts (строковые литералы) и
-// в *.astro (тело шаблона). Защищены: frontmatter, <script>, <style> — там код/бегущие
-// строки хиро не трогаются.
-//
-//   node scripts/typograf.cjs         # применить
-//   node scripts/typograf.cjs --dry   # показать, что изменится
 
 const fs = require("fs");
 const path = require("path");
@@ -54,7 +47,6 @@ function typoProtect(text, patterns) {
   return out;
 }
 
-// .astro: защищаем frontmatter (--- ... ---), <script>, <style>; типографим остальное.
 function processAstro(text) {
   let head = "";
   let body = text;
@@ -70,7 +62,6 @@ function processAstro(text) {
   return head + processed;
 }
 
-// .ts: типографим только внутри строковых литералов.
 const reStringLiteral = /(['"`])((?:\\.|(?!\1)[\s\S])*?)\1/g;
 function processTs(text) {
   return text.replace(reStringLiteral, (_m, q, inner) => q + typo(inner) + q);

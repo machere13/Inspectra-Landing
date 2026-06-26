@@ -66,10 +66,10 @@
 
 .radar {
   position: relative;
-  aspect-ratio: 1;
   width: 100%;
-  max-width: 420px;
+  aspect-ratio: 1;
   margin-inline: auto;
+  max-width: 420px;
 }
 
 .ring {

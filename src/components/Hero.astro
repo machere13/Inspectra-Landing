@@ -26,14 +26,16 @@ const codeDownLoop = [...codeDown, ...codeDown];
 ---
 
 <section class={styles.hero} id="top" data-hero>
+  <canvas class={styles.heroCanvas} data-hero-canvas aria-hidden="true"></canvas>
+
   <div class={`${styles.rail} ${styles.railLeft}`} aria-hidden="true">
     <div class={styles.railTrack} data-rail="down">
-      {codeDownLoop.map(l => <span class={styles.railLine}>{l}</span>)}
+      {codeDownLoop.map(l => <span class={styles.railLine} data-rail-line>{l}</span>)}
     </div>
   </div>
   <div class={`${styles.rail} ${styles.railRight}`} aria-hidden="true">
     <div class={styles.railTrack} data-rail="up">
-      {codeUp.map(l => <span class={styles.railLine}>{l}</span>)}
+      {codeUp.map(l => <span class={styles.railLine} data-rail-line>{l}</span>)}
     </div>
   </div>
 

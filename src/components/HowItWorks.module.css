@@ -1,8 +1,8 @@
 .how {
   position: relative;
   z-index: 1;
+  background: var(--color-tertiary);
   border-top: var(--border-x025) solid var(--color-border-tertiary);
-  background: var(--color-quinary);
 }
 
 .inner {

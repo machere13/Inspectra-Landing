@@ -1,7 +1,7 @@
 .cta {
   position: relative;
   z-index: 1;
-  background: var(--color-background);
+  /* фон намеренно прозрачный — сквозь него видны точки глобального canvas (блок 06) */
   border-top: var(--border-x025) solid var(--color-border-tertiary);
 }
 

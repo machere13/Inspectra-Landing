@@ -145,11 +145,11 @@
   }
 
   .nav:global(.menuOpen) .burger span:first-child {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(3.5px) rotate(45deg);
   }
 
   .nav:global(.menuOpen) .burger span:last-child {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-3.5px) rotate(-45deg);
   }
 
   .menuLink {

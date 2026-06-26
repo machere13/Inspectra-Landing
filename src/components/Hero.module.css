@@ -2,20 +2,33 @@
   position: relative;
   z-index: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: clamp(40px, 8vh, 88px);
   min-height: 100dvh;
-  padding-top: 96px;
-  padding-bottom: var(--spacing-x24);
+  padding-top: 120px;
+  padding-bottom: var(--spacing-x16);
+  background: var(--color-background);
   overflow: hidden;
   text-align: center;
+}
+
+/* Hero-фон: анимированные сигнальные линии (не точки) */
+.heroCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 /* ===== Бегущие строки кода по бокам ===== */
 .rail {
   position: absolute;
   top: 0;
-  z-index: 0;
+  z-index: 1;
   width: 220px;
   height: 100%;
   overflow: hidden;
@@ -41,11 +54,11 @@
 }
 
 .railTrack[data-rail="up"] {
-  animation: railUp 38s linear infinite;
+  animation: railUp 15s linear infinite;
 }
 
 .railTrack[data-rail="down"] {
-  animation: railDown 38s linear infinite;
+  animation: railDown 15s linear infinite;
 }
 
 @keyframes railUp {
@@ -60,11 +73,11 @@
 
 .railLine {
   font-family: var(--font-family-geist-mono);
-  font-size: 11px;
-  line-height: 1.4;
+  font-size: 12px;
+  line-height: 1.5;
   letter-spacing: 0.02em;
-  color: var(--color-text-tertiary);
-  opacity: 0.4;
+  color: var(--color-text-secondary);
+  opacity: 0.78;
   white-space: nowrap;
 }
 
@@ -86,18 +99,12 @@
 
 .line {
   display: block;
+  color: var(--color-text-tertiary);
+  transition: color 0.4s ease;
 }
 
 .emph {
-  letter-spacing: 0.04em;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--color-text-primary);
-}
-
-@supports not (-webkit-text-stroke: 1px white) {
-  .emph {
-    color: var(--color-text-secondary);
-  }
+  color: var(--color-text-primary);
 }
 
 .sub {
@@ -164,17 +171,12 @@
   transform: scale(0.92);
 }
 
-/* Цифры — на абсолюте по низу, чтобы не налезать на скролл-индикатор */
+/* Цифры — в потоке внизу hero (flex-gap разводит с контентом, без налезания) */
 .stats {
-  position: absolute;
-  bottom: var(--spacing-x10);
-  left: 50%;
+  position: relative;
   z-index: 2;
   display: flex;
   gap: clamp(24px, 6vw, 80px);
-  padding-top: var(--spacing-x5);
-  border-top: var(--border-x025) solid var(--color-border-tertiary);
-  transform: translateX(-50%);
 }
 
 .stat {

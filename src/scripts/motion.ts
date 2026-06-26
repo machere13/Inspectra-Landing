@@ -3,10 +3,36 @@ import Lenis from "lenis";
 import { initBackground } from "./background";
 import { initCursor } from "./cursor";
 import { gsap, ScrollTrigger } from "./gsap";
+import { initHeroBg } from "./heroBg";
+
+const RAIL_GLYPHS = "ABCDEFGHKLMNPRSTUVXZ0123456789#%&*<>/\\{}[]();=:.";
+
+function initRails(): void {
+  if (reduced) return;
+  const lines = Array.from(document.querySelectorAll<HTMLElement>("[data-rail-line]"));
+  if (!lines.length) return;
+  const originals = lines.map(l => l.textContent || "");
+  let frame = 0;
+  const tick = (): void => {
+    if (frame % 3 === 0) {
+      for (let i = 0; i < lines.length; i++) {
+        const orig = originals[i];
+        let out = "";
+        for (let c = 0; c < orig.length; c++) {
+          const ch = orig[c];
+          out += ch !== " " && Math.random() < 0.07 ? RAIL_GLYPHS[(Math.random() * RAIL_GLYPHS.length) | 0] : ch;
+        }
+        lines[i].textContent = out;
+      }
+    }
+    frame++;
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
 
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/** Кастомный скролл-индикатор: вертикальный прогресс-бар + числовой процент. */
 function initScrollProgress(): void {
   const bar = document.querySelector<HTMLElement>("[data-progress-bar]");
   const num = document.querySelector<HTMLElement>("[data-progress-num]");
@@ -161,7 +187,6 @@ function initScramble(): void {
   });
 }
 
-/** Караоке-подсветка: слова заголовка зажигаются серый→белый по мере скролла. */
 function initKaraoke(): void {
   const els = gsap.utils.toArray<HTMLElement>("[data-karaoke]");
   els.forEach(el => {
@@ -251,7 +276,10 @@ function boot(): void {
 
   const canvas = document.querySelector<HTMLCanvasElement>("[data-bg-canvas]");
   if (canvas) initBackground(canvas);
+  const heroCanvas = document.querySelector<HTMLCanvasElement>("[data-hero-canvas]");
+  if (heroCanvas) initHeroBg(heroCanvas);
   initCursor();
+  initRails();
   initScrollProgress();
 
   initLenis();

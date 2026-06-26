@@ -160,64 +160,54 @@ html.lenis body {
   display: none;
 }
 
-/* ===== Кастомный курсор: инвертирующее кольцо (mix-blend difference) + точка ===== */
-.cursorDot,
+/* ===== Кастомный курсор: точка-в-покое, кольцо-на-hover (морфинг) ===== */
+.cursorDot {
+  display: none !important;
+}
+
 .cursorRing {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 9999;
   display: none;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
   pointer-events: none;
+  background: #fff;
+  border: 0 solid #fff;
   border-radius: 50%;
   mix-blend-mode: difference;
   will-change: transform;
+  transition:
+    width 0.3s var(--ease-out),
+    height 0.3s var(--ease-out),
+    margin 0.3s var(--ease-out),
+    background-color 0.3s ease,
+    border-width 0.3s ease,
+    opacity 0.25s ease;
 }
 
-.hasCustomCursor .cursorDot,
 .hasCustomCursor .cursorRing {
   display: block;
 }
 
-/* центральная точка — резкая, следует мгновенно */
-.cursorDot {
-  width: 5px;
-  height: 5px;
-  margin: -2.5px 0 0 -2.5px;
-  background: #fff;
-  transition: opacity 0.2s ease;
-}
-
-/* кольцо — тонкое, инвертирует фон, тянется за курсором */
-.cursorRing {
-  width: 30px;
-  height: 30px;
-  margin: -15px 0 0 -15px;
-  border: 1.5px solid #fff;
-  transition:
-    width 0.28s var(--ease-out),
-    height 0.28s var(--ease-out),
-    margin 0.28s var(--ease-out),
-    opacity 0.2s ease;
-}
-
+/* на интерактиве — превращается в кольцо */
 .cursorHover .cursorRing {
-  width: 56px;
-  height: 56px;
-  margin: -28px 0 0 -28px;
-}
-
-.cursorHover .cursorDot {
-  opacity: 0;
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  background: transparent;
+  border-width: 1.5px;
 }
 
 .cursorDown .cursorRing {
-  width: 22px;
-  height: 22px;
-  margin: -11px 0 0 -11px;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
 }
 
-.cursorHidden .cursorDot,
 .cursorHidden .cursorRing {
   opacity: 0;
 }

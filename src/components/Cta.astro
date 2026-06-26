@@ -1,14 +1,16 @@
 ---
-import { CTA, NAV, SITE } from "../data/content";
-import Logo from "./Logo.astro";
-import styles from "./Cta.module.css";
+import { CTA, NAV, SITE } from '../data/content'
+import Logo from './Logo.astro'
+import styles from './Cta.module.css'
 
-const year = 2026;
+const year = 2026
 ---
 
 <section class={styles.cta} id="cta">
   <div class={`container ${styles.inner}`}>
-    <p class={styles.label} data-reveal><span aria-hidden="true">[06]</span> Старт</p>
+    <p class={styles.label} data-reveal>
+      <span aria-hidden="true">[06]</span> Старт
+    </p>
     <h2 class={styles.title} data-karaoke>{CTA.title}</h2>
     <p class={styles.text} data-reveal>{CTA.text}</p>
     <a
@@ -17,19 +19,24 @@ const year = 2026;
       target="_blank"
       rel="noopener noreferrer"
     >
-      {CTA.button} <span aria-hidden="true">→</span>
+      {CTA.button}
+      <span aria-hidden="true">→</span>
     </a>
   </div>
 
   <footer class={styles.footer}>
     <div class={`container ${styles.footerInner}`}>
-      <a href="#top" class={styles.brand} aria-label="Inspectra">
+      <a href="#top" class={styles.brand} aria-label="Инспектра">
         <Logo class={styles.brandLogo} />
       </a>
       <nav class={styles.footerNav} aria-label="Подвал">
-        {NAV.map(link => (
-          <a href={link.href} class={styles.footerLink}>{link.label}</a>
-        ))}
+        {
+          NAV.map(link => (
+            <a href={link.href} class={styles.footerLink}>
+              {link.label}
+            </a>
+          ))
+        }
       </nav>
       <p class={styles.copy}>© {year} {SITE.name}. Расследуй ответственно.</p>
     </div>

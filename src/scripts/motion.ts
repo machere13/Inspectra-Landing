@@ -7,24 +7,85 @@ import { initHeroBg } from "./heroBg";
 
 const RAIL_GLYPHS = "ABCDEFGHKLMNPRSTUVXZ0123456789#%&*<>/\\{}[]();=:.";
 
+interface RailState {
+  track: HTMLElement;
+  lines: HTMLElement[];
+  originals: string[];
+  n: number;
+  period: number;
+  dir: number;
+  pos: number;
+  inited: boolean;
+}
+
+function scrambleLine(orig: string): string {
+  let out = "";
+  for (let c = 0; c < orig.length; c++) {
+    const ch = orig[c];
+    out += ch !== " " && Math.random() < 0.06 ? RAIL_GLYPHS[(Math.random() * RAIL_GLYPHS.length) | 0] : ch;
+  }
+  return out;
+}
+
 function initRails(): void {
   if (reduced) return;
-  const lines = Array.from(document.querySelectorAll<HTMLElement>("[data-rail-line]"));
-  if (!lines.length) return;
-  const originals = lines.map(l => l.textContent || "");
-  let frame = 0;
-  const tick = (): void => {
-    if (frame % 3 === 0) {
-      for (let i = 0; i < lines.length; i++) {
-        const orig = originals[i];
-        let out = "";
-        for (let c = 0; c < orig.length; c++) {
-          const ch = orig[c];
-          out += ch !== " " && Math.random() < 0.07 ? RAIL_GLYPHS[(Math.random() * RAIL_GLYPHS.length) | 0] : ch;
-        }
-        lines[i].textContent = out;
+  const tracks = Array.from(document.querySelectorAll<HTMLElement>("[data-rail]"));
+  if (!tracks.length) return;
+  const SPEED = 42;
+
+  const rails: RailState[] = tracks.map(track => {
+    const lines = Array.from(track.querySelectorAll<HTMLElement>("[data-rail-line]"));
+    const copies = Math.max(1, parseInt(track.dataset.railCopies || "4", 10));
+    const n = Math.max(1, Math.round(lines.length / copies));
+    return {
+      track,
+      lines,
+      originals: lines.map(l => l.textContent || ""),
+      n,
+      period: 0,
+      dir: track.dataset.rail === "down" ? -1 : 1,
+      pos: 0,
+      inited: false,
+    };
+  });
+
+  const measure = (): void => {
+    for (const r of rails) {
+      r.period = r.lines.length > r.n ? r.lines[r.n].offsetTop - r.lines[0].offsetTop : 0;
+      if (!r.inited) {
+        r.pos = r.dir === -1 ? r.period : 0;
+        r.inited = true;
       }
     }
+  };
+  measure();
+  window.addEventListener("resize", measure);
+
+  let lastT = performance.now();
+  let frame = 0;
+  const tick = (now: number): void => {
+    const dt = Math.min(0.05, (now - lastT) / 1000);
+    lastT = now;
+
+    for (const r of rails) {
+      if (r.period <= 0) continue;
+      r.pos = (((r.pos + SPEED * dt * r.dir) % r.period) + r.period) % r.period;
+      r.track.style.transform = `translateY(${-r.pos}px)`;
+    }
+
+    if (frame % 4 === 0) {
+      for (const r of rails) {
+        const copies = Math.round(r.lines.length / r.n);
+        for (let j = 0; j < r.n; j++) {
+          const scrambled = scrambleLine(r.originals[j]);
+          for (let k = 0; k < copies; k++) {
+            const el = r.lines[j + k * r.n];
+            if (el) el.textContent = scrambled;
+          }
+        }
+      }
+    }
+
     frame++;
     requestAnimationFrame(tick);
   };
@@ -246,7 +307,10 @@ function initSteps(): void {
     start: "top top",
     end: () => "+=" + steps.length * 70 + "%",
     pin: true,
-    scrub: 0.6,
+    pinSpacing: true,
+    anticipatePin: 1,
+    scrub: 1,
+    invalidateOnRefresh: true,
     onUpdate: self => {
       if (progress) progress.style.transform = `scaleY(${self.progress})`;
       const idx = Math.min(steps.length - 1, Math.floor(self.progress * steps.length));

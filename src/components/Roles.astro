@@ -1,13 +1,6 @@
 ---
 import { ROLES } from "../data/content";
 import styles from "./Roles.module.css";
-
-const code: Record<string, string> = {
-  mage: "MAG",
-  warrior: "WAR",
-  priest: "PRST",
-  hunter: "HNT",
-};
 ---
 
 <section class={styles.roles} id="roles" data-roles>
@@ -39,9 +32,9 @@ const code: Record<string, string> = {
       <div class={styles.stage}>
         {ROLES.map((role, i) => (
           <article class:list={[styles.panel, { isActive: i === 0 }]} data-role-panel={i}>
-            <span class={styles.watermark} aria-hidden="true">{code[role.id]}</span>
+            <span class={styles.watermark} aria-hidden="true">0{i + 1}</span>
             <div class={styles.panelHead}>
-              <span class={styles.panelCode}>{code[role.id]} // 0{i + 1}</span>
+              <span class={styles.panelCode}>Класс 0{i + 1}</span>
               <h3 class={styles.panelTitle}>{role.label}</h3>
               <p class={styles.panelSub}>{role.subtitle}</p>
             </div>

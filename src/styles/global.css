@@ -1,5 +1,5 @@
-@import "./fonts.css";
-@import "./tokens.css";
+@import url("./fonts.css");
+@import url("./tokens.css");
 
 *,
 *::before,
@@ -10,7 +10,7 @@
 }
 
 html {
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   scroll-behavior: auto;
 }
 
@@ -22,7 +22,7 @@ body {
   color: var(--color-text-primary);
   background-color: var(--color-background);
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   overflow-x: hidden;
 }
 
@@ -56,19 +56,17 @@ svg {
   text-shadow: none;
 }
 
-/* Нативный скроллбар скрыт — используется кастомный индикатор */
 html {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 ::-webkit-scrollbar {
+  display: none;
   width: 0;
   height: 0;
-  display: none;
 }
 
-/* Lenis */
 html.lenis,
 html.lenis body {
   height: auto;
@@ -82,7 +80,6 @@ html.lenis body {
   overflow: clip;
 }
 
-/* ===== Typography helpers (из дизайн-системы Inspectra) ===== */
 .textH1 {
   font-family: var(--font-family-geist);
   font-size: var(--font-size-h1);
@@ -128,7 +125,6 @@ html.lenis body {
   text-transform: uppercase;
 }
 
-/* ===== Layout helpers ===== */
 .container {
   width: 100%;
   max-width: var(--maxw);
@@ -136,7 +132,6 @@ html.lenis body {
   padding-inline: var(--spacing-x6);
 }
 
-/* ===== Фон: canvas с анимированными точками (порт из project3.1) ===== */
 .bgCanvas {
   position: fixed;
   inset: 0;
@@ -146,7 +141,6 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* Статический фолбэк (reduced-motion / тач / без canvas) — виден, пока canvas не активен */
 .bgGridFallback {
   position: fixed;
   inset: 0;
@@ -160,7 +154,6 @@ html.lenis body {
   display: none;
 }
 
-/* ===== Кастомный курсор: точка-в-покое, кольцо-на-hover (морфинг) ===== */
 .cursorDot {
   display: none !important;
 }
@@ -193,7 +186,6 @@ html.lenis body {
   display: block;
 }
 
-/* на интерактиве — превращается в кольцо */
 .cursorHover .cursorRing {
   width: 48px;
   height: 48px;
@@ -218,7 +210,6 @@ html.lenis body {
   cursor: none;
 }
 
-/* ===== Кастомный скролл-индикатор ===== */
 .scrollProgress {
   position: fixed;
   top: 50%;
@@ -265,13 +256,12 @@ html.lenis body {
   writing-mode: vertical-rl;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .scrollProgress {
     display: none;
   }
 }
 
-/* ===== Reveal base (управляется из scripts/motion.ts) ===== */
 [data-reveal] {
   opacity: 0;
   transform: translateY(28px);

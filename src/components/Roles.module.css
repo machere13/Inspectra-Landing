@@ -34,12 +34,11 @@
 
 .selector {
   display: grid;
-  grid-template-columns: minmax(260px, 340px) 1fr;
   gap: var(--spacing-x10);
+  grid-template-columns: minmax(260px, 340px) 1fr;
   border-top: var(--border-x025) solid var(--color-border-secondary);
 }
 
-/* ===== Табы классов ===== */
 .tabs {
   display: flex;
   flex-direction: column;
@@ -48,14 +47,14 @@
 .tab {
   position: relative;
   display: grid;
-  grid-template-columns: auto 1fr;
   align-items: center;
   gap: var(--spacing-x4);
+  grid-template-columns: auto 1fr;
   padding: var(--spacing-x5) var(--spacing-x4);
-  text-align: left;
-  border-bottom: var(--border-x025) solid var(--color-border-tertiary);
   color: var(--color-text-tertiary);
   transition: color 0.3s ease, padding-left 0.3s var(--ease-out);
+  text-align: left;
+  border-bottom: var(--border-x025) solid var(--color-border-tertiary);
 }
 
 .tab:global(.isActive) {
@@ -106,7 +105,6 @@
   color: var(--color-text-tertiary);
 }
 
-/* ===== Панель деталей ===== */
 .stage {
   position: relative;
   min-height: 420px;
@@ -206,10 +204,10 @@
   color: var(--color-text-primary);
 }
 
-@media (max-width: 860px) {
+@media (width <= 860px) {
   .selector {
-    grid-template-columns: 1fr;
     gap: var(--spacing-x6);
+    grid-template-columns: 1fr;
   }
 
   .stage {

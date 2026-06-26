@@ -1,21 +1,23 @@
 ---
-import { NAV } from "../data/content";
-import Logo from "./Logo.astro";
-import styles from "./Nav.module.css";
+import { NAV } from '../data/content'
+import Logo from './Logo.astro'
+import styles from './Nav.module.css'
 ---
 
 <header class={styles.nav} data-nav>
   <div class={`container ${styles.inner}`}>
-    <a href="#top" class={styles.logo} aria-label="Inspectra — на главную">
+    <a href="#top" class={styles.logo} aria-label="Инспектра — на главную">
       <Logo class={styles.logoSvg} />
     </a>
 
     <nav class={styles.links} aria-label="Основная навигация">
-      {NAV.map(link => (
-        <a href={link.href} class={styles.link}>
-          {link.label}
-        </a>
-      ))}
+      {
+        NAV.map(link => (
+          <a href={link.href} class={styles.link}>
+            {link.label}
+          </a>
+        ))
+      }
     </nav>
 
     <a href="#cta" class={styles.cta}>
@@ -23,33 +25,40 @@ import styles from "./Nav.module.css";
       <span class={styles.ctaArrow} aria-hidden="true">→</span>
     </a>
 
-    <button class={styles.burger} data-burger aria-label="Меню" aria-expanded="false">
+    <button
+      class={styles.burger}
+      data-burger
+      aria-label="Меню"
+      aria-expanded="false"
+    >
       <span></span><span></span>
     </button>
   </div>
 
   <div class={styles.menu} data-menu>
-    {NAV.map(link => (
-      <a href={link.href} class={styles.menuLink}>
-        {link.label}
-      </a>
-    ))}
+    {
+      NAV.map(link => (
+        <a href={link.href} class={styles.menuLink}>
+          {link.label}
+        </a>
+      ))
+    }
     <a href="#cta" class={styles.menuLink}>Начать →</a>
   </div>
 </header>
 
 <script>
-  const burger = document.querySelector<HTMLButtonElement>("[data-burger]");
-  const nav = document.querySelector("[data-nav]");
-  const menu = document.querySelector("[data-menu]");
-  burger?.addEventListener("click", () => {
-    const open = nav?.classList.toggle("menuOpen");
-    burger.setAttribute("aria-expanded", open ? "true" : "false");
-  });
-  menu?.querySelectorAll("a").forEach(a =>
-    a.addEventListener("click", () => {
-      nav?.classList.remove("menuOpen");
-      burger?.setAttribute("aria-expanded", "false");
+  const burger = document.querySelector<HTMLButtonElement>('[data-burger]')
+  const nav = document.querySelector('[data-nav]')
+  const menu = document.querySelector('[data-menu]')
+  burger?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('menuOpen')
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false')
+  })
+  menu?.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      nav?.classList.remove('menuOpen')
+      burger?.setAttribute('aria-expanded', 'false')
     }),
-  );
+  )
 </script>

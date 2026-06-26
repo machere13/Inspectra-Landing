@@ -37,16 +37,15 @@
 .item {
   position: relative;
   display: grid;
-  grid-template-columns: 96px 1fr auto auto;
   align-items: center;
   gap: var(--spacing-x6);
+  grid-template-columns: 96px 1fr auto auto;
   padding: clamp(20px, 3vw, 38px) var(--spacing-x5);
+  transition: color 0.4s var(--ease-out);
   border-bottom: var(--border-x025) solid var(--color-border-secondary);
   overflow: hidden;
-  transition: color 0.4s var(--ease-out);
 }
 
-/* Заливка-инверсия по hover (бел. фон сдвигается снизу) */
 .item::before {
   content: "";
   position: absolute;
@@ -135,10 +134,10 @@
   transform: none;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .item {
-    grid-template-columns: 60px 1fr;
     gap: var(--spacing-x4);
+    grid-template-columns: 60px 1fr;
   }
 
   .tag,

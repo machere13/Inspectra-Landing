@@ -8,9 +8,9 @@
 
 .inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
   align-items: center;
   gap: var(--spacing-x12);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
 }
 
 .label {
@@ -64,7 +64,6 @@
   color: var(--color-signal);
 }
 
-/* Radar */
 .radar {
   position: relative;
   aspect-ratio: 1;
@@ -108,12 +107,12 @@
 .sweep {
   position: absolute;
   inset: 0;
-  border-radius: 50%;
   background: conic-gradient(
     from 0deg,
     var(--color-signal-dim),
     transparent 25%
   );
+  border-radius: 50%;
   animation: sweep 4s linear infinite;
 }
 
@@ -153,10 +152,10 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .inner {
-    grid-template-columns: 1fr;
     gap: var(--spacing-x10);
+    grid-template-columns: 1fr;
   }
 
   .radar {

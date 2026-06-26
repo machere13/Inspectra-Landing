@@ -1,5 +1,4 @@
 :root {
-  /* SPACING (base 4px) */
   --spacing-none: 0;
   --spacing-x05: 2px;
   --spacing-x1: 4px;
@@ -14,8 +13,6 @@
   --spacing-x14: 56px;
   --spacing-x16: 64px;
   --spacing-x24: 96px;
-
-  /* RADIUS */
   --border-radius-none: 0;
   --border-radius-x05: 2px;
   --border-radius-x1: 4px;
@@ -23,13 +20,9 @@
   --border-radius-x3: 12px;
   --border-radius-x4: 16px;
   --border-radius-x5: 20px;
-
-  /* BORDER */
   --border-none: 0;
   --border-x025: 1px;
   --border-x05: 2px;
-
-  /* FONTS */
   --font-family-geist: "Geist", sans-serif;
   --font-family-geist-mono: "GeistMono", monospace;
   --letter-spacing-normal: 0;
@@ -57,8 +50,6 @@
   --font-size-labels2: 14px;
   --font-size-code: 14px;
   --font-size-caption: 10px;
-
-  /* COLORS — dark (default Inspectra theme) */
   --color-accent: rgb(255 255 255 / 100%);
   --color-primary: rgb(32 32 32 / 80%);
   --color-secondary: rgb(19 19 19 / 80%);
@@ -82,18 +73,13 @@
   --color-signal: rgb(255 255 255 / 100%);
   --color-signal-dim: rgb(255 255 255 / 16%);
   --color-signal-soft: rgb(255 255 255 / 7%);
-
-  /* GRADIENTS */
   --gradient-surface: linear-gradient(30deg, rgb(132 132 132 / 20%) -20%, rgb(0 0 0 / 20%) 30%);
   --gradient-border: linear-gradient(85deg, rgb(58 58 58 / 50%), rgb(255 255 255 / 25%));
-
-  /* LAYOUT */
   --maxw: 1280px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-inout: cubic-bezier(0.7, 0, 0.3, 1);
 }
 
-/* Tablet */
 @media (width >= 769px) and (width <= 1024px) {
   :root {
     --font-size-h1: 48px;
@@ -111,7 +97,6 @@
   }
 }
 
-/* Mobile */
 @media (width <= 768px) {
   :root {
     --font-size-h1: 40px;

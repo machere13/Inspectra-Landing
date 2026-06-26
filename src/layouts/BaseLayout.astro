@@ -1,15 +1,15 @@
 ---
-import "../styles/global.css";
+import '../styles/global.css'
 
 interface Props {
-  title?: string;
-  description?: string;
+  title?: string
+  description?: string
 }
 
 const {
-  title = "Inspectra — расследуй веб",
-  description = "Интерактивная платформа: учись понимать, как реально работает цифровой мир.",
-} = Astro.props;
+  title = 'Инспектра — расследуй веб',
+  description = 'Интерактивная платформа: учись понимать, как реально работает цифровой мир.',
+} = Astro.props
 ---
 
 <!doctype html>
@@ -26,35 +26,44 @@ const {
 
     <title>{title}</title>
 
-    <link rel="preload" href="/fonts/Geist.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/GeistMono.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/Geist.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/GeistMono.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
   </head>
   <body>
-    <!-- Фоновая анимация точек (canvas) + статический фолбэк для reduced-motion -->
     <canvas class="bgCanvas" data-bg-canvas aria-hidden="true"></canvas>
     <div class="bgGridFallback" aria-hidden="true"></div>
 
-    <!-- Кастомный курсор -->
     <div class="cursorDot" data-cursor-dot aria-hidden="true"></div>
     <div class="cursorRing" data-cursor-ring aria-hidden="true"></div>
 
-    <!-- Кастомный скролл-индикатор -->
     <div class="scrollProgress" aria-hidden="true">
       <span class="scrollProgressNum" data-progress-num>00</span>
       <span class="scrollProgressTrack">
         <span class="scrollProgressBar" data-progress-bar></span>
       </span>
-      <span class="scrollProgressLabel">scroll</span>
+      <span class="scrollProgressLabel">прокрутка</span>
     </div>
 
     <slot />
 
     <script>
-      import "../scripts/motion";
+      import '../scripts/motion'
     </script>
   </body>
 </html>

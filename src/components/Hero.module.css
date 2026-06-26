@@ -14,7 +14,6 @@
   text-align: center;
 }
 
-/* Hero-фон: анимированные сигнальные линии (не точки) */
 .heroCanvas {
   position: absolute;
   inset: 0;
@@ -24,7 +23,6 @@
   pointer-events: none;
 }
 
-/* ===== Бегущие строки кода по бокам ===== */
 .rail {
   position: absolute;
   top: 0;
@@ -46,32 +44,14 @@
 }
 
 .railTrack {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-x3);
-  padding: var(--spacing-x4);
+  display: block;
+  padding-inline: var(--spacing-x4);
   will-change: transform;
 }
 
-.railTrack[data-rail="up"] {
-  animation: railUp 15s linear infinite;
-}
-
-.railTrack[data-rail="down"] {
-  animation: railDown 15s linear infinite;
-}
-
-@keyframes railUp {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
-}
-
-@keyframes railDown {
-  from { transform: translateY(-50%); }
-  to { transform: translateY(0); }
-}
-
 .railLine {
+  display: block;
+  margin-bottom: var(--spacing-x3);
   font-family: var(--font-family-geist-mono);
   font-size: 12px;
   line-height: 1.5;
@@ -171,7 +151,6 @@
   transform: scale(0.92);
 }
 
-/* Цифры — в потоке внизу hero (flex-gap разводит с контентом, без налезания) */
 .stats {
   position: relative;
   z-index: 2;
@@ -199,13 +178,13 @@
   color: var(--color-text-tertiary);
 }
 
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .rail {
     display: none;
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .stats {
     position: static;
     flex-wrap: wrap;

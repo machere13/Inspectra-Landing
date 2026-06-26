@@ -1,0 +1,323 @@
+@import "./fonts.css";
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-family-geist-mono);
+  font-size: var(--font-size-p2);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  color: var(--color-background);
+  background-color: var(--color-signal);
+  text-shadow: none;
+}
+
+/* Нативный скроллбар скрыт — используется кастомный индикатор */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* ===== Typography helpers (из дизайн-системы Inspectra) ===== */
+.textH1 {
+  font-family: var(--font-family-geist);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-headers);
+  line-height: var(--line-height-big);
+}
+
+.textH2 {
+  font-family: var(--font-family-geist);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-headers);
+  line-height: var(--line-height-big);
+  letter-spacing: var(--letter-spacing-tiny);
+}
+
+.textH3 {
+  font-family: var(--font-family-geist);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-headers);
+  line-height: var(--line-height-normal);
+}
+
+.textP1 {
+  font-family: var(--font-family-geist);
+  font-size: var(--font-size-p1);
+  font-weight: var(--font-weight-paragraphs);
+  line-height: var(--line-height-loose);
+}
+
+.textMono {
+  font-family: var(--font-family-geist-mono);
+  font-size: var(--font-size-p3);
+  line-height: var(--line-height-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.textCaption {
+  font-family: var(--font-family-geist-mono);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-captions);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ===== Layout helpers ===== */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-inline: var(--spacing-x6);
+}
+
+/* ===== Фон: canvas с анимированными точками (порт из project3.1) ===== */
+.bgCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Статический фолбэк (reduced-motion / тач / без canvas) — виден, пока canvas не активен */
+.bgGridFallback {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgb(150 150 150 / 14%) 1.5px, transparent 1.5px);
+  background-size: 43px 43px;
+}
+
+.bgActive .bgGridFallback {
+  display: none;
+}
+
+/* ===== Кастомный курсор: инвертирующее кольцо (mix-blend difference) + точка ===== */
+.cursorDot,
+.cursorRing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: none;
+  pointer-events: none;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.hasCustomCursor .cursorDot,
+.hasCustomCursor .cursorRing {
+  display: block;
+}
+
+/* центральная точка — резкая, следует мгновенно */
+.cursorDot {
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  background: #fff;
+  transition: opacity 0.2s ease;
+}
+
+/* кольцо — тонкое, инвертирует фон, тянется за курсором */
+.cursorRing {
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border: 1.5px solid #fff;
+  transition:
+    width 0.28s var(--ease-out),
+    height 0.28s var(--ease-out),
+    margin 0.28s var(--ease-out),
+    opacity 0.2s ease;
+}
+
+.cursorHover .cursorRing {
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+}
+
+.cursorHover .cursorDot {
+  opacity: 0;
+}
+
+.cursorDown .cursorRing {
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+}
+
+.cursorHidden .cursorDot,
+.cursorHidden .cursorRing {
+  opacity: 0;
+}
+
+.hasCustomCursor,
+.hasCustomCursor a,
+.hasCustomCursor button {
+  cursor: none;
+}
+
+/* ===== Кастомный скролл-индикатор ===== */
+.scrollProgress {
+  position: fixed;
+  top: 50%;
+  right: var(--spacing-x5);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-x3);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.scrollProgressNum {
+  font-family: var(--font-family-geist-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.scrollProgressTrack {
+  position: relative;
+  width: 2px;
+  height: 140px;
+  background: var(--color-border-tertiary);
+  overflow: hidden;
+}
+
+.scrollProgressBar {
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.scrollProgressLabel {
+  font-family: var(--font-family-geist-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  writing-mode: vertical-rl;
+}
+
+@media (max-width: 768px) {
+  .scrollProgress {
+    display: none;
+  }
+}
+
+/* ===== Reveal base (управляется из scripts/motion.ts) ===== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: opacity, transform;
+}
+
+.isReady [data-reveal] {
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+}
+
+[data-reveal].isInview {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .bgCanvas {
+    display: none;
+  }
+
+  .bgGridFallback {
+    display: block;
+  }
+}

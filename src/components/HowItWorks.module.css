@@ -1,0 +1,130 @@
+.how {
+  position: relative;
+  z-index: 1;
+  border-top: var(--border-x025) solid var(--color-border-tertiary);
+  background: var(--color-quinary);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100dvh;
+  padding-block: var(--spacing-x16);
+}
+
+.head {
+  margin-bottom: var(--spacing-x10);
+}
+
+.label {
+  margin-bottom: var(--spacing-x4);
+  font-family: var(--font-family-geist-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+}
+
+.label span {
+  margin-right: var(--spacing-x2);
+  color: var(--color-text-tertiary);
+}
+
+.title {
+  font-family: var(--font-family-geist);
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.hint {
+  margin-top: var(--spacing-x3);
+  font-family: var(--font-family-geist-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.stage {
+  display: grid;
+  grid-template-columns: 2px 1fr;
+  gap: var(--spacing-x8);
+}
+
+.rail {
+  position: relative;
+  width: 2px;
+  background: var(--color-border-tertiary);
+}
+
+.railFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-signal);
+  box-shadow: 0 0 16px var(--color-signal);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x6);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: var(--spacing-x6);
+  align-items: start;
+  opacity: 0.28;
+  transform: translateX(-6px);
+  transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
+}
+
+.step:global(.isActive) {
+  opacity: 1;
+  transform: none;
+}
+
+.stepNum {
+  font-family: var(--font-family-geist);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 600;
+  line-height: 0.9;
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.45s ease;
+}
+
+.step:global(.isActive) .stepNum {
+  color: var(--color-signal);
+}
+
+.stepTitle {
+  font-family: var(--font-family-geist);
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.stepText {
+  max-width: 52ch;
+  margin-top: var(--spacing-x3);
+  font-family: var(--font-family-geist);
+  font-size: var(--font-size-p1);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .step {
+    grid-template-columns: 56px 1fr;
+    gap: var(--spacing-x4);
+  }
+}

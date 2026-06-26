@@ -1,0 +1,35 @@
+---
+import { AGENT } from "../data/content";
+import styles from "./Agent.module.css";
+---
+
+<section class={styles.agent} id="agent">
+  <div class={`container ${styles.inner}`}>
+    <div class={styles.left}>
+      <p class={styles.label} data-reveal><span aria-hidden="true">[03]</span> Роль пользователя</p>
+      <h2 class={styles.title} data-karaoke>{AGENT.title}</h2>
+      <p class={styles.lead} data-reveal>{AGENT.lead}</p>
+
+      <ul class={styles.traits}>
+        {AGENT.traits.map(t => (
+          <li class={styles.trait} data-reveal>
+            <span class={styles.asterisk} aria-hidden="true">✳</span>
+            {t}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class={styles.radar} data-parallax="0.18" aria-hidden="true">
+      <div class={styles.ring}></div>
+      <div class={styles.ring}></div>
+      <div class={styles.ring}></div>
+      <div class={styles.sweep}></div>
+      <div class={styles.cross}></div>
+      <div class={styles.crossV}></div>
+      <span class={styles.blip} style="top: 28%; left: 64%;"></span>
+      <span class={styles.blip} style="top: 70%; left: 38%;"></span>
+      <span class={styles.blip} style="top: 52%; left: 78%;"></span>
+    </div>
+  </div>
+</section>

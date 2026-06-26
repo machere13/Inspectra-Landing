@@ -1,0 +1,85 @@
+---
+import { ROLES } from "../data/content";
+import styles from "./Roles.module.css";
+
+const code: Record<string, string> = {
+  mage: "MAG",
+  warrior: "WAR",
+  priest: "PRST",
+  hunter: "HNT",
+};
+---
+
+<section class={styles.roles} id="roles" data-roles>
+  <div class={`container ${styles.inner}`}>
+    <header class={styles.head}>
+      <p class={styles.label} data-reveal><span aria-hidden="true">[04]</span> Классы</p>
+      <h2 class={styles.title} data-karaoke>Выбери класс агента</h2>
+    </header>
+
+    <div class={styles.selector} data-reveal>
+      <div class={styles.tabs} role="tablist">
+        {ROLES.map((role, i) => (
+          <button
+            class:list={[styles.tab, { isActive: i === 0 }]}
+            data-role-tab={i}
+            role="tab"
+            aria-selected={i === 0 ? "true" : "false"}
+          >
+            <span class={styles.tabIndex}>0{i + 1}</span>
+            <span class={styles.tabBody}>
+              <span class={styles.tabName}>{role.label}</span>
+              <span class={styles.tabSub}>{role.subtitle}</span>
+            </span>
+            <span class={styles.tabBar} aria-hidden="true"></span>
+          </button>
+        ))}
+      </div>
+
+      <div class={styles.stage}>
+        {ROLES.map((role, i) => (
+          <article class:list={[styles.panel, { isActive: i === 0 }]} data-role-panel={i}>
+            <span class={styles.watermark} aria-hidden="true">{code[role.id]}</span>
+            <div class={styles.panelHead}>
+              <span class={styles.panelCode}>{code[role.id]} // 0{i + 1}</span>
+              <h3 class={styles.panelTitle}>{role.label}</h3>
+              <p class={styles.panelSub}>{role.subtitle}</p>
+            </div>
+            <p class={styles.panelDesc}>{role.description}</p>
+            <ul class={styles.perks}>
+              {role.perks.map(p => (
+                <li class={styles.perk}>
+                  <span class={styles.perkMark} aria-hidden="true">+</span>
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector("[data-roles]");
+  if (root) {
+    const tabs = [...root.querySelectorAll<HTMLElement>("[data-role-tab]")];
+    const panels = [...root.querySelectorAll<HTMLElement>("[data-role-panel]")];
+
+    const select = (idx: number): void => {
+      tabs.forEach((t, i) => {
+        const on = i === idx;
+        t.classList.toggle("isActive", on);
+        t.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      panels.forEach((p, i) => p.classList.toggle("isActive", i === idx));
+    };
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("mouseenter", () => select(i));
+      tab.addEventListener("focus", () => select(i));
+      tab.addEventListener("click", () => select(i));
+    });
+  }
+</script>

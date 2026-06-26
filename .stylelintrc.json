@@ -1,0 +1,46 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "plugins": ["stylelint-order"],
+  "overrides": [
+    {
+      "files": ["**/*.astro"],
+      "customSyntax": "postcss-html"
+    }
+  ],
+  "rules": {
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]*$",
+    "custom-property-pattern": null,
+    "no-descending-specificity": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "order/properties-order": [
+      "position",
+      "inset",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "z-index",
+      "display",
+      "flex-direction",
+      "align-items",
+      "justify-content",
+      "gap",
+      "grid-template-columns",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "font-family",
+      "font-size",
+      "font-weight",
+      "line-height",
+      "letter-spacing",
+      "color",
+      "background",
+      "border",
+      "border-radius",
+      "transform",
+      "transition"
+    ]
+  }
+}

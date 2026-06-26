@@ -1,0 +1,44 @@
+.manifesto {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(96px, 16vh, 200px);
+  background: var(--color-background);
+  border-top: var(--border-x025) solid var(--color-border-tertiary);
+}
+
+.inner {
+  max-width: 980px;
+}
+
+.label {
+  margin-bottom: var(--spacing-x8);
+  font-family: var(--font-family-geist-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+}
+
+.label span {
+  margin-right: var(--spacing-x2);
+  color: var(--color-text-tertiary);
+}
+
+.lead {
+  font-family: var(--font-family-geist);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+
+.body {
+  max-width: 60ch;
+  margin-top: var(--spacing-x8);
+  font-family: var(--font-family-geist);
+  font-size: var(--font-size-p1);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-secondary);
+}

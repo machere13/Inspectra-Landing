@@ -1,0 +1,221 @@
+.hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding-top: 96px;
+  padding-bottom: var(--spacing-x24);
+  overflow: hidden;
+  text-align: center;
+}
+
+/* ===== Бегущие строки кода по бокам ===== */
+.rail {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  width: 220px;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+}
+
+.railLeft {
+  left: 0;
+}
+
+.railRight {
+  right: 0;
+  text-align: right;
+}
+
+.railTrack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x3);
+  padding: var(--spacing-x4);
+  will-change: transform;
+}
+
+.railTrack[data-rail="up"] {
+  animation: railUp 38s linear infinite;
+}
+
+.railTrack[data-rail="down"] {
+  animation: railDown 38s linear infinite;
+}
+
+@keyframes railUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+@keyframes railDown {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+
+.railLine {
+  font-family: var(--font-family-geist-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--color-text-tertiary);
+  opacity: 0.4;
+  white-space: nowrap;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--font-family-geist);
+  font-size: clamp(48px, 11vw, 168px);
+  font-weight: 600;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+
+.line {
+  display: block;
+}
+
+.emph {
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-text-primary);
+}
+
+@supports not (-webkit-text-stroke: 1px white) {
+  .emph {
+    color: var(--color-text-secondary);
+  }
+}
+
+.sub {
+  max-width: 52ch;
+  margin-top: var(--spacing-x8);
+  font-family: var(--font-family-geist);
+  font-size: var(--font-size-p1);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-secondary);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-x3);
+  margin-top: var(--spacing-x8);
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-x2);
+  padding: var(--spacing-x4) var(--spacing-x6);
+  font-family: var(--font-family-geist-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-background);
+  background: var(--color-accent);
+  border: var(--border-x025) solid var(--color-accent);
+  border-radius: var(--border-radius-x1);
+  transition: transform 0.15s var(--ease-out), background 0.2s ease, color 0.2s ease;
+}
+
+.primary:hover {
+  color: var(--color-accent);
+  background: transparent;
+}
+
+.primary:active {
+  transform: scale(0.92);
+}
+
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-x4) var(--spacing-x6);
+  font-family: var(--font-family-geist-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  border: var(--border-x025) solid var(--color-border-secondary);
+  border-radius: var(--border-radius-x1);
+  transition: transform 0.15s var(--ease-out), border-color 0.2s ease;
+}
+
+.secondary:hover {
+  border-color: var(--color-text-primary);
+}
+
+.secondary:active {
+  transform: scale(0.92);
+}
+
+/* Цифры — на абсолюте по низу, чтобы не налезать на скролл-индикатор */
+.stats {
+  position: absolute;
+  bottom: var(--spacing-x10);
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  gap: clamp(24px, 6vw, 80px);
+  padding-top: var(--spacing-x5);
+  border-top: var(--border-x025) solid var(--color-border-tertiary);
+  transform: translateX(-50%);
+}
+
+.stat {
+  text-align: center;
+}
+
+.statValue {
+  display: block;
+  font-family: var(--font-family-geist);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  font-family: var(--font-family-geist-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+@media (max-width: 900px) {
+  .rail {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats {
+    position: static;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-x6);
+    margin-top: var(--spacing-x12);
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .railTrack {
+    animation: none;
+  }
+}

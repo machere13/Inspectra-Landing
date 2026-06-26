@@ -1,0 +1,65 @@
+---
+import { SITE, STATS } from "../data/content";
+import styles from "./Hero.module.css";
+
+const CODE = [
+  "const target = inspect(tab)",
+  "fetch('/api/session')",
+  "document.cookie // httpOnly?",
+  "> scanning DOM tree…",
+  "X-Frame-Options: missing",
+  "localStorage.role = 'agent'",
+  "GET /users/1 → 200 OK",
+  "querySelectorAll('[hidden]')",
+  "Set-Cookie: secure=false",
+  "trace: 14 requests captured",
+  "payload.decode(base64)",
+  "ws://socket open",
+  "CSP: default-src 'none'",
+  "node.removeChild(secret)",
+  "0x1F · breakpoint hit",
+  "audit(): 3 findings",
+];
+const codeUp = [...CODE, ...CODE];
+const codeDown = [...CODE].reverse();
+const codeDownLoop = [...codeDown, ...codeDown];
+---
+
+<section class={styles.hero} id="top" data-hero>
+  <div class={`${styles.rail} ${styles.railLeft}`} aria-hidden="true">
+    <div class={styles.railTrack} data-rail="down">
+      {codeDownLoop.map(l => <span class={styles.railLine}>{l}</span>)}
+    </div>
+  </div>
+  <div class={`${styles.rail} ${styles.railRight}`} aria-hidden="true">
+    <div class={styles.railTrack} data-rail="up">
+      {codeUp.map(l => <span class={styles.railLine}>{l}</span>)}
+    </div>
+  </div>
+
+  <div class={`container ${styles.inner}`}>
+    <h1 class={styles.title}>
+      <span class={styles.line} data-scramble>Не читай</span>
+      <span class={styles.line} data-scramble>про веб —</span>
+      <span class={`${styles.line} ${styles.emph}`} data-scramble>расследуй его</span>
+    </h1>
+
+    <p class={styles.sub} data-hero-meta>{SITE.description}</p>
+
+    <div class={styles.actions} data-hero-meta>
+      <a href="#cta" class={styles.primary}>
+        Начать расследование <span aria-hidden="true">→</span>
+      </a>
+      <a href="#manifesto" class={styles.secondary}>Что это такое</a>
+    </div>
+  </div>
+
+  <div class={styles.stats} data-hero-meta>
+    {STATS.map(s => (
+      <div class={styles.stat}>
+        <span class={styles.statValue} data-count={s.value}>0</span>
+        <span class={styles.statLabel}>{s.label}</span>
+      </div>
+    ))}
+  </div>
+</section>

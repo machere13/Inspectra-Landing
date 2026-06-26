@@ -1,0 +1,24 @@
+---
+import logo from "../assets/logo.svg?raw";
+
+interface Props {
+  class?: string;
+}
+const { class: cls } = Astro.props;
+---
+
+<span class:list={["logo", cls]} set:html={logo} aria-label="Inspectra"></span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    color: var(--color-text-primary);
+  }
+
+  .logo :global(svg) {
+    display: block;
+    width: auto;
+    height: 100%;
+    fill: currentColor;
+  }
+</style>

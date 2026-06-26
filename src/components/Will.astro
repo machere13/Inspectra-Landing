@@ -1,0 +1,27 @@
+---
+import { WILL } from "../data/content";
+import styles from "./Will.module.css";
+---
+
+<section class={styles.will} id="will">
+  <div class={`container ${styles.inner}`}>
+    <header class={styles.head}>
+      <p class={styles.label} data-reveal><span aria-hidden="true">[02]</span> Ты будешь</p>
+      <h2 class={styles.title} data-karaoke>Навыки, которые ты прокачаешь</h2>
+    </header>
+
+    <ul class={styles.list}>
+      {WILL.map(item => (
+        <li class={styles.item} data-reveal>
+          <span class={styles.order} aria-hidden="true">{item.order}</span>
+          <div class={styles.main}>
+            <span class={styles.text}>{item.text}</span>
+            <span class={styles.desc}>{item.desc}</span>
+          </div>
+          <span class={styles.tag}>{item.tag}</span>
+          <span class={styles.arrow} aria-hidden="true">→</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

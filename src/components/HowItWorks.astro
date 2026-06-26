@@ -1,0 +1,32 @@
+---
+import { STEPS } from "../data/content";
+import styles from "./HowItWorks.module.css";
+---
+
+<section class={styles.how} id="how" data-steps>
+  <div class={`container ${styles.inner}`}>
+    <header class={styles.head}>
+      <p class={styles.label}><span aria-hidden="true">[05]</span> Как это устроено</p>
+      <h2 class={styles.title} data-karaoke>Один цикл расследования</h2>
+      <p class={styles.hint} aria-hidden="true">↓ листай</p>
+    </header>
+
+    <div class={styles.stage}>
+      <div class={styles.rail} aria-hidden="true">
+        <span class={styles.railFill} data-steps-progress></span>
+      </div>
+
+      <ol class={styles.steps}>
+        {STEPS.map(step => (
+          <li class={styles.step} data-step>
+            <span class={styles.stepNum}>{step.order}</span>
+            <div class={styles.stepBody}>
+              <h3 class={styles.stepTitle}>{step.title}</h3>
+              <p class={styles.stepText}>{step.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

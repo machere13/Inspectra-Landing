@@ -1,0 +1,222 @@
+.roles {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(80px, 12vh, 160px);
+  background: var(--color-background);
+  border-top: var(--border-x025) solid var(--color-border-tertiary);
+}
+
+.head {
+  max-width: 720px;
+  margin-bottom: var(--spacing-x12);
+}
+
+.label {
+  margin-bottom: var(--spacing-x4);
+  font-family: var(--font-family-geist-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.label span {
+  margin-right: var(--spacing-x2);
+  color: var(--color-text-tertiary);
+}
+
+.title {
+  font-family: var(--font-family-geist);
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.selector {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  gap: var(--spacing-x10);
+  border-top: var(--border-x025) solid var(--color-border-secondary);
+}
+
+/* ===== Табы классов ===== */
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--spacing-x4);
+  padding: var(--spacing-x5) var(--spacing-x4);
+  text-align: left;
+  border-bottom: var(--border-x025) solid var(--color-border-tertiary);
+  color: var(--color-text-tertiary);
+  transition: color 0.3s ease, padding-left 0.3s var(--ease-out);
+}
+
+.tab:global(.isActive) {
+  padding-left: var(--spacing-x6);
+  color: var(--color-text-primary);
+}
+
+.tabBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--color-accent);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.tab:global(.isActive) .tabBar {
+  transform: scaleY(1);
+}
+
+.tabIndex {
+  font-family: var(--font-family-geist-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tabName {
+  font-family: var(--font-family-geist);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.tabSub {
+  font-family: var(--font-family-geist-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+/* ===== Панель деталей ===== */
+.stage {
+  position: relative;
+  min-height: 420px;
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-x8);
+  background: var(--color-quaternary);
+  border: var(--border-x025) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-x3);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
+}
+
+.panel:global(.isActive) {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.watermark {
+  position: absolute;
+  top: -0.3em;
+  right: -0.05em;
+  font-family: var(--font-family-geist);
+  font-size: clamp(120px, 20vw, 280px);
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-border-tertiary);
+  pointer-events: none;
+}
+
+.panelHead {
+  position: relative;
+  margin-bottom: var(--spacing-x6);
+}
+
+.panelCode {
+  font-family: var(--font-family-geist-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--color-text-tertiary);
+}
+
+.panelTitle {
+  margin-top: var(--spacing-x2);
+  font-family: var(--font-family-geist);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.panelSub {
+  margin-top: var(--spacing-x2);
+  font-family: var(--font-family-geist-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.panelDesc {
+  position: relative;
+  max-width: 52ch;
+  font-family: var(--font-family-geist);
+  font-size: var(--font-size-p1);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-secondary);
+}
+
+.perks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x2);
+  margin-top: auto;
+  padding-top: var(--spacing-x6);
+}
+
+.perk {
+  display: flex;
+  gap: var(--spacing-x2);
+  font-family: var(--font-family-geist-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.perkMark {
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 860px) {
+  .selector {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-x6);
+  }
+
+  .stage {
+    min-height: 520px;
+  }
+
+  .panel {
+    padding: var(--spacing-x6);
+  }
+}

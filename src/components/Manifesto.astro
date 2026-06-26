@@ -1,0 +1,14 @@
+---
+import { MANIFESTO } from "../data/content";
+import styles from "./Manifesto.module.css";
+---
+
+<section class={styles.manifesto} id="manifesto">
+  <div class={`container ${styles.inner}`}>
+    <p class={styles.label} data-reveal>
+      <span aria-hidden="true">[01]</span> Манифест
+    </p>
+    <p class={styles.lead} data-karaoke>{MANIFESTO.lead}</p>
+    <p class={styles.body} data-reveal>{MANIFESTO.body}</p>
+  </div>
+</section>
